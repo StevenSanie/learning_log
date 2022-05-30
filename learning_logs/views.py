@@ -30,3 +30,7 @@ class EditTopic(generic.UpdateView):
 	success_url = reverse_lazy('topics')
 	fields = ['topic_name']
 	template_name = 'learning_logs/edit_topic.html'
+
+class DetailTopic(generic.DetailView):
+	model = Topic
+	template_name = 'learning_log/topic-detail.html'

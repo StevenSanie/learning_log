@@ -8,4 +8,5 @@ urlpatterns = [
 	path('topics/new', views.AddTopic.as_view(), name='add-topic'),
 	path('topics/<int:pk>/delete/', views.DeleteTopic.as_view(), name='delete-topic'),
 	path('topics/<int:pk>/update/', views.EditTopic.as_view(), name='update-topic'),
+	path('topics/<int:pk>/', views.DetailTopic.as_view(), name='topic-detail'),
 ]

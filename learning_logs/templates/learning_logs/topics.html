@@ -7,8 +7,9 @@
 <hr>
 	<ol>
 		{% for topic in object_list %}
+
 		<li class="my-4">
-			<p class="lead">{{topic}}</p>
+			<p class="lead"><a href="{% url 'topic-detail' topic.id %}"> {{ topic }}</a> </p>
 			<a href="{% url 'update-topic' topic.id %}" class="btn btn-sm btn-success">
 				<i class="fa fa-edit"></i> Edit
 			</a> 
@@ -16,6 +17,9 @@
 			<a href="{% url 'delete-topic' topic.id %}" class="btn btn-sm btn-danger">
 				<i class="fa fa-trash"></i> Delete
 			</a>
+
+			<p><small>Added {{topic.date_added|timesince}} ago.</small></p>
+			<hr>
 		</li>
 
 		{% empty %}
