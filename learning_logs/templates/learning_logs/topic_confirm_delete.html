@@ -1,0 +1,14 @@
+{% extends 'learning_logs/base.html' %}
+{% block title %}
+	<title>Delete {{topic}}</title>
+{% endblock title %}
+
+{% block content %}
+	<h1>Delete {{topic}}?</h1>
+	<p>You won't recover this topic once it is deleted from the database</p>
+	<form action="" method="post">
+		{% csrf_token %}
+		<input type="submit" value="Yes" class="btn btn-danger">
+		<a href="{% url 'topics' %}" class="btn btn-success">No</a>
+	</form>
+{% endblock content %}

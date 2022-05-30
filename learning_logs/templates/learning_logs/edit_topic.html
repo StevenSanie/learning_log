@@ -1,0 +1,12 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block title %} <title>Edit {{topic}}</title> {% endblock title %}
+
+{% block content %}
+	<h1>Edit {{topic}}</h1>
+	<form action="" method="post">
+		{% csrf_token %}
+		{{form.as_table}}
+		<input type="submit" value="Save" class="btn btn-primary my-4"> <hr>
+	</form>
+{% endblock content %}
