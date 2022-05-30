@@ -12,7 +12,7 @@ def index(request):
 class TopicsList(generic.ListView):
 	model = Topic
 	template_name = 'learning_logs/topics.html'
-	paginate_by = 10
+	paginate_by = 5
 
 
 class AddTopic(generic.CreateView):
@@ -33,4 +33,4 @@ class EditTopic(generic.UpdateView):
 
 class DetailTopic(generic.DetailView):
 	model = Topic
-	template_name = 'learning_log/topic-detail.html'
+	template_name = 'learning_logs/topic-detail.html'

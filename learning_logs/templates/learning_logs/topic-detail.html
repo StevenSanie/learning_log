@@ -1,1 +1,7 @@
-{% extends 'learning_log/base.html' %}
+{% extends 'learning_logs/base.html' %}
+
+{% block title %} <title>Learning Log {{topic}}</title> {% endblock %}
+
+{% block content %}
+	<h1>{{topic}}</h1>
+{% endblock content %}
