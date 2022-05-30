@@ -8,6 +8,8 @@ class Topic(models.Model):
 	topic_name = models.CharField(max_length=60)
 	date_added = models.DateTimeField(auto_now_add=True)
 
+	class Meta:
+		ordering = ['-date_added']
 
 	def get_absolute_url(self):
 		return reverse("topic-detail", kwargs={"pk": self.pk})
