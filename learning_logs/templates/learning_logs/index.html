@@ -3,19 +3,24 @@
 {% block title %} <title>Learning Logs | Home </title> {% endblock title %}
 
 {% block content %}
-	<h1>Welcome To Learning Log!</h1>
-	<p>A platform that enables you keep track of what you learn in multiple topics!</p>
 
-	<div class="container my-4">
+	<div class="container text-center">
+		<h1>Welcome To Learning Log!</h1>
+		<p>A platform that enables you keep track of what you learn in multiple topics!</p>
+	</div>
+
+	<div class="container recent-entries">
+		<h2 class="my-4 text-center">Recent Entries </h2>
 		{% for entry in entries %}
-			<h2>{{entry.entry_title}}</h2>
+		<div class="home-entry">
+			<h3>{{entry.entry_title}}</h3>
 			<p>
 				{{entry.entry_text}}
 			</p>
 			
 			<small>{{entry.date_added}} | {{entry.date_added|timesince}} ago | <a href="{% url 'topic-detail' entry.entry_topic.id %}"> <span class="text-small badge badge-dark">{{entry.entry_topic}}</span></a> </small>
 			<hr>
+		</div>
 		{% endfor %}
 	</div>
-	<a href="{% url 'new-entry' %}" class="btn btn-primary"> <i class="fa fa-plus"></i> New Entry </a>
 {% endblock content%}
