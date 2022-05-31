@@ -4,4 +4,12 @@
 
 {% block content %}
 	<h1>{{topic}}</h1>
+	{% for entries in topic.entry_set.all %}
+	<div class="container entry_container">
+		<h2>{{ entries.entry_title }}</h2>
+		<p>
+			{{ entries.entry_text }}
+		</p>
+	</div>
+	{% endfor %}
 {% endblock content %}

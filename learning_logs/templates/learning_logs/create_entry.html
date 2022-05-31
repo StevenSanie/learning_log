@@ -1,0 +1,12 @@
+{% extends 'learning_logs/base.html' %}
+{% block title %} <title>New Entry</title> {% endblock title %}
+
+{% block content %}
+	<div class="container">
+		<form action="" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" class="btn btn-primary" value="Post">
+		</form>
+	</div>
+{% endblock content %}

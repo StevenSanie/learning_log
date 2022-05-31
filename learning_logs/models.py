@@ -20,13 +20,14 @@ class Topic(models.Model):
 
 
 class Entry(models.Model):
-	entry_topic = models.ForeignKey(Topic, on_delete=models.CASCADE, help_text='Select Topic')
-	entry_title = models.CharField(max_length=100, help_text='Entry title', blank=True)
-	entry_text = models.TextField(max_length=500, help_text='Enter your entry')
+	entry_topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+	entry_title = models.CharField(max_length=100, blank=True)
+	entry_text = models.TextField(max_length=500)
 	date_added = models.DateTimeField(auto_now_add=True)
 
 	class Meta:
 		verbose_name_plural = 'entries'
+		ordering = ['-date_added']
 
 	def __str__(self):
 		return f"{self.entry_title} - {self.entry_topic}"

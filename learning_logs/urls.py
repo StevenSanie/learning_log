@@ -9,4 +9,6 @@ urlpatterns = [
 	path('topics/<int:pk>/delete/', views.DeleteTopic.as_view(), name='delete-topic'),
 	path('topics/<int:pk>/update/', views.EditTopic.as_view(), name='update-topic'),
 	path('topics/<int:pk>/', views.DetailTopic.as_view(), name='topic-detail'),
+	path('entry/new/', views.CreateEntry.as_view(), name='new-entry'),
+	path('entries/', views.Entries.as_view(), name='entries'),
 ]

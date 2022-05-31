@@ -1,5 +1,6 @@
 from dataclasses import fields
 from pyexpat import model
+from re import template
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -7,7 +8,11 @@ from .models import Topic, Entry
 
 # Create your views here.
 def index(request):
-	return render(request, 'learning_logs/index.html')
+	entries = Entry.objects.all()
+	context = {
+		'entries': entries
+	}
+	return render(request, 'learning_logs/index.html', context)
 
 class TopicsList(generic.ListView):
 	model = Topic
@@ -34,3 +39,15 @@ class EditTopic(generic.UpdateView):
 class DetailTopic(generic.DetailView):
 	model = Topic
 	template_name = 'learning_logs/topic-detail.html'
+
+
+# Entry Views
+class CreateEntry(generic.CreateView):
+	model = Entry
+	template_name = 'learning_logs/create_entry.html'
+	fields = '__all__'
+	success_url = reverse_lazy('index')
+
+class Entries(generic.ListView):
+	model = Entry
+	template_name = 'learning_logs/entries.html'
