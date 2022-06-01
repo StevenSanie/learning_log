@@ -4,7 +4,7 @@
 
 {% block content %}
 
-	<div class="container text-center">
+	<div class="text-center">
 		<h1>Welcome To Learning Log!</h1>
 		<p>A platform that enables you keep track of what you learn in multiple topics!</p>
 	</div>
@@ -12,15 +12,20 @@
 	<div class="container recent-entries">
 		<h2 class="my-4 text-center">Recent Entries </h2>
 		{% for entry in entries %}
-		<div class="home-entry">
-			<h3>{{entry.entry_title}}</h3>
-			<p>
-				{{entry.entry_text}}
-			</p>
 			
-			<small>{{entry.date_added}} | {{entry.date_added|timesince}} ago | <a href="{% url 'topic-detail' entry.entry_topic.id %}"> <span class="text-small badge badge-dark">{{entry.entry_topic}}</span></a> </small>
-			<hr>
-		</div>
+			<div class="home-entry p-5">
+				<h3> <a href="{% url 'entry-detail' entry.id %}"> {{entry.entry_title}} </a></h3>
+				<p>
+					{{entry.entry_text}}
+				</p>
+				
+				<small>{{entry.date_added}} | {{entry.date_added|timesince}} ago | <a href="{% url 'topic-detail' entry.entry_topic.id %}"> <span class="text-small badge badge-dark">{{entry.entry_topic}}</span></a> </small>
+				<hr>
+				
+				
+
+			</div>
+
 		{% endfor %}
 	</div>
 {% endblock content%}

@@ -4,12 +4,10 @@
 
 {% block content %}
 	<h1>{{topic}}</h1>
-	{% for entries in topic.entry_set.all %}
-	<div class="container entry_container">
-		<h2>{{ entries.entry_title }}</h2>
-		<p>
-			{{ entries.entry_text }}
-		</p>
-	</div>
-	{% endfor %}
+	<ul>
+		{% for entries in topic.entry_set.all %}
+			<li> <a href="{% url 'entry-detail' entries.id %}"> <p class="lead">{{ entries.entry_title }}</p> </a> </li>
+		{% endfor %}
+	</ul>
+
 {% endblock content %}

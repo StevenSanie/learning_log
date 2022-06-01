@@ -51,3 +51,8 @@ class CreateEntry(generic.CreateView):
 class Entries(generic.ListView):
 	model = Entry
 	template_name = 'learning_logs/entries.html'
+
+class DetailEntry(generic.DetailView):
+	model = Entry
+	template_name = 'learning_logs/detail-entry.html'
+	
