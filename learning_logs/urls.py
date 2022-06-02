@@ -12,4 +12,6 @@ urlpatterns = [
 	path('entry/new/', views.CreateEntry.as_view(), name='new-entry'),
 	path('entries/', views.Entries.as_view(), name='entries'),
 	path('entry/<int:pk>/', views.DetailEntry.as_view(), name='entry-detail'),
+	path('entry/edit/<int:pk>/', views.EditEntry.as_view(), name='edit-entry'),
+	path('entry/delete/<int:pk>/', views.DeleteEntry.as_view(), name='delete-entry'),
 ]

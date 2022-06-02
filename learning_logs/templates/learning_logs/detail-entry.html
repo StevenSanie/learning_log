@@ -9,6 +9,11 @@
 
 		<div class="container">
 			<p>{{entry.entry_text}} {% lorem 3 p %}</p>
+			<hr>
+			<p>
+				<a href="{% url 'edit-entry' entry.id %}" class="btn btn-sm btn-dark"> Edit </a>
+				<a href="{% url 'delete-entry' entry.id %}" class="btn btn-sm btn-dark"> Delete </a>
+			</p>
 		</div>
 
 		<small></small>

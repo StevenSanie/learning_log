@@ -1,5 +1,6 @@
 from tabnanny import verbose
 from django.db import models
+from django.forms import NullBooleanField
 from django.urls import reverse
 
 # Create your models here.
@@ -7,6 +8,7 @@ class Topic(models.Model):
 	"""Models to represent a topic"""
 	topic_name = models.CharField(max_length=60)
 	date_added = models.DateTimeField(auto_now_add=True)
+	topic_description = models.TextField(max_length=80, blank=True, null=True)
 
 	class Meta:
 		ordering = ['-date_added']

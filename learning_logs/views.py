@@ -9,8 +9,10 @@ from .models import Topic, Entry
 # Create your views here.
 def index(request):
 	entries = Entry.objects.all()
+	entry_count = Entry.objects.count
 	context = {
-		'entries': entries
+		'entries': entries,
+		'entry_count': entry_count
 	}
 	return render(request, 'learning_logs/index.html', context)
 
@@ -56,3 +58,13 @@ class DetailEntry(generic.DetailView):
 	model = Entry
 	template_name = 'learning_logs/detail-entry.html'
 	
+class EditEntry(generic.UpdateView):
+	model = Entry
+	fields = '__all__'
+	template_name = 'learning_logs/edit-entry.html'
+	success_url = reverse_lazy('entries')
+
+class DeleteEntry(generic.DeleteView):
+	model = Entry
+	template_name = 'learning_logs/delete-entry.html'
+	success_url = reverse_lazy('entries')
