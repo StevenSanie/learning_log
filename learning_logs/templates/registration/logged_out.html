@@ -1,0 +1,9 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block title %} <title>Logged Out Successfuly! </title> {% endblock title %}
+
+{% block content %} 
+	<h1> You Have Been Logged Out! </h1>
+	<p class="lead">Thank you for using our service. <a href="{% url 'login' %}"> Login Again</a>?</p>
+	<a href="{% url 'index' %}" class="btn btn-sm btn-primary"> <i class="fa fa-home"></i> Go Home</a>
+{% endblock content %}

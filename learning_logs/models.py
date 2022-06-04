@@ -2,6 +2,7 @@ from tabnanny import verbose
 from django.db import models
 from django.forms import NullBooleanField
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Topic(models.Model):
@@ -9,6 +10,7 @@ class Topic(models.Model):
 	topic_name = models.CharField(max_length=60)
 	date_added = models.DateTimeField(auto_now_add=True)
 	topic_description = models.TextField(max_length=80, blank=True, null=True)
+	topic_owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
 	class Meta:
 		ordering = ['-date_added']

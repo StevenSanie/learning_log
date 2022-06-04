@@ -5,29 +5,22 @@
 {% block content %}
 
 	<div class="text-center">
-		<h1>Welcome To Learning Log!</h1>
-		<p>A platform that enables you keep track of what you learn in multiple topics!</p>
-	</div>
+		{% if user.is_authenticated %}
+		<h1>Welcome, {{user.username|title}}! </h1>
+		<p>Keep track of what you are learning in multiple topics.</p>
 
-	<div class="container recent-entries">
-		<h2 class="my-4 text-center">Recent Entries ({{entry_count}}) </h2>
 		<div class="text-center">
 			<a href="{% url 'new-entry' %}" class="btn btn-sm btn-primary"> <i class="fa fa-plus"></i> Create New Entry </a>
 			<a href="{% url 'add-topic' %}" class="btn btn-sm btn-primary"> <i class="fa fa-plus"></i> Add Topic</a>
 		</div>
-		{% for entry in entries %}
-			
-			<div class="home-entry p-5">
-				<h3> <a href="{% url 'entry-detail' entry.id %}"> {{entry.entry_title}} </a></h3>
-				<p>
-					{{entry.entry_text}}
-				</p>
-				
-				<small>{{entry.date_added|date:'M d, y'}} | {{entry.date_added|timesince}} ago | <a href="{% url 'topic-detail' entry.entry_topic.id %}"> <span class="text-small badge badge-dark">{{entry.entry_topic}}</span></a> </small>
-				<hr>
 
-			</div>
-
-		{% endfor %}
+		{% else %}
+		<h1>Welcome To Learning Log!</h1>
+		<p class="lead">Learning Log helps you keep track of what you learn in different topics.</p>
+		<a href="{% url 'login' %}" class="btn btn-primary">Register</a>
+		<a href="{% url 'login' %}" class="btn btn-white"> <i class="fa fa-sign-in"></i> Login Now </a>
+		{% endif %}
 	</div>
+
+
 {% endblock content%}
