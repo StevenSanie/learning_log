@@ -21,9 +21,11 @@
 
 	<header class="m-4">
 		<ul class="sidebar-nav">
+			<li>{% if user.is_authenticated %} Logged in as {{user.username}} {% else %} Not Logged
+				                        In {% endif %}
+			</li>
 			<li><a href="{% url 'index' %}">Home</a></li>
 			<li><a href="{% url 'topics' %}">Topics</a></li>
-			<li><a href="{% url 'entries' %}">Entries</a></li>
 			{% if user.is_authenticated %}
 			<li><a href="{% url 'logout' %}">Logout</a></li>
 			{% endif %}

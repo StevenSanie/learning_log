@@ -7,11 +7,10 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Topic(models.Model):
 	"""Models to represent a topic"""
+	owner = models.ForeignKey(User, on_delete=models.CASCADE)
 	topic_name = models.CharField(max_length=60)
 	date_added = models.DateTimeField(auto_now_add=True)
 	topic_description = models.TextField(max_length=80, blank=True, null=True)
-	topic_owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-
 	class Meta:
 		ordering = ['-date_added']
 

@@ -6,6 +6,7 @@
 	<div class="container">
 		<ul>
 			{% for entry in object_list %}
+			
 				<li>
 					<p class="lead"><a href="{% url 'entry-detail' entry.id %}" class=""> {{entry.entry_title}}</a></p>
 				</li>

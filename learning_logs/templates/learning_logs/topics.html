@@ -9,13 +9,14 @@
 		{% for topic in object_list %}
 
 		<li class="my-4">
-			<p class="lead"><a href="{% url 'topic-detail' topic.id %}"> {{ topic }}</a> </p>
-			<a href="{% url 'update-topic' topic.id %}" class="btn btn-sm btn-success">
-				<i class="fa fa-edit"></i> Edit
+			<span class="lead"><a href="{% url 'topic-detail' topic.id %}"> {{ topic }}</a> </span>
+
+			<a href="{% url 'update-topic' topic.id %}" class="m-2">
+				<i class="fa fa-edit"></i>
 			</a> 
 			
-			<a href="{% url 'delete-topic' topic.id %}" class="btn btn-sm btn-danger">
-				<i class="fa fa-trash"></i> Delete
+			<a href="{% url 'delete-topic' topic.id %}">
+				<i class="fa fa-trash"></i> 
 			</a>
 
 			<p><small>Added {{topic.date_added|timesince}} ago.</small></p>

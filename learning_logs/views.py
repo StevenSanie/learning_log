@@ -1,6 +1,7 @@
 from dataclasses import fields
 from pyexpat import model
 from re import template
+from django.http import request
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -23,12 +24,17 @@ class TopicsList(LoginRequiredMixin, generic.ListView):
 	template_name = 'learning_logs/topics.html'
 	paginate_by = 5
 
+	def get_queryset(self):
+		topic_host = Topic.objects.filter(owner=self.request.user)
+		return topic_host
+
+
 
 class AddTopic(LoginRequiredMixin, generic.CreateView):
 	model = Topic
 	template_name = 'learning_logs/add-topic.html'
 	fields = ['topic_name']
-	success_url = reverse_lazy('topics')
+	success_url = reverse_lazy('topics')                                                            
 
 class DeleteTopic(LoginRequiredMixin, generic.DeleteView):
 	model = Topic
@@ -37,7 +43,7 @@ class DeleteTopic(LoginRequiredMixin, generic.DeleteView):
 class EditTopic(LoginRequiredMixin, generic.UpdateView):
 	model = Topic
 	success_url = reverse_lazy('topics')
-	fields = ['topic_name']
+	fields = '__all__'
 	template_name = 'learning_logs/edit_topic.html'
 
 class DetailTopic(LoginRequiredMixin, generic.DetailView):
@@ -49,12 +55,16 @@ class DetailTopic(LoginRequiredMixin, generic.DetailView):
 class CreateEntry(LoginRequiredMixin, generic.CreateView):
 	model = Entry
 	template_name = 'learning_logs/create_entry.html'
-	fields = '__all__'
+	fields = [
+		'entry_title', 
+		'entry_text'
+	]
 	success_url = reverse_lazy('index')
 
 class Entries(LoginRequiredMixin, generic.ListView):
 	model = Entry
 	template_name = 'learning_logs/entries.html'
+
 
 class DetailEntry(LoginRequiredMixin, generic.DetailView):
 	model = Entry
