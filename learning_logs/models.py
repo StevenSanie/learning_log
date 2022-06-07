@@ -23,7 +23,7 @@ class Topic(models.Model):
 
 
 class Entry(models.Model):
-	entry_topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+	topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
 	entry_title = models.CharField(max_length=100, blank=True)
 	entry_text = models.TextField(max_length=500)
 	date_added = models.DateTimeField(auto_now_add=True)

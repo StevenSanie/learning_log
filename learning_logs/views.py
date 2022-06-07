@@ -1,12 +1,10 @@
-from dataclasses import fields
-from pyexpat import model
-from re import template
-from django.http import request
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import generic
 from .models import Topic, Entry
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from .forms import TopicForm, EntryForm
 
 
 # Create your views here.
@@ -29,12 +27,22 @@ class TopicsList(LoginRequiredMixin, generic.ListView):
 		return topic_host
 
 
+@login_required
+def add_topic(request):
+	if request.method != 'POST':
+		form = TopicForm()
+	else:
+		form = TopicForm(data=request.POST)
+		if form.is_valid():
+			topic = form.save(commit=False)
+			topic.owner = request.user
+			topic.save()
+			return redirect('topics')
 
-class AddTopic(LoginRequiredMixin, generic.CreateView):
-	model = Topic
-	template_name = 'learning_logs/add-topic.html'
-	fields = ['topic_name']
-	success_url = reverse_lazy('topics')                                                            
+	context = {
+		'form': form
+	}
+	return render(request, 'learning_logs/add-topic.html', context)
 
 class DeleteTopic(LoginRequiredMixin, generic.DeleteView):
 	model = Topic
@@ -43,7 +51,7 @@ class DeleteTopic(LoginRequiredMixin, generic.DeleteView):
 class EditTopic(LoginRequiredMixin, generic.UpdateView):
 	model = Topic
 	success_url = reverse_lazy('topics')
-	fields = '__all__'
+	fields = ['topic_name', 'topic_description']
 	template_name = 'learning_logs/edit_topic.html'
 
 class DetailTopic(LoginRequiredMixin, generic.DetailView):
@@ -52,14 +60,26 @@ class DetailTopic(LoginRequiredMixin, generic.DetailView):
 
 
 # Entry Views
-class CreateEntry(LoginRequiredMixin, generic.CreateView):
-	model = Entry
-	template_name = 'learning_logs/create_entry.html'
-	fields = [
-		'entry_title', 
-		'entry_text'
-	]
-	success_url = reverse_lazy('index')
+def new_entry(request, topic_id):
+	topic = Topic.objects.get(id=topic_id)
+
+	if request.method != 'POST':
+		form = EntryForm()
+	else:
+		form = EntryForm(data=request.POST)
+		if form.is_valid():
+			entry = form.save(commit=False)
+			entry.topic = topic
+			entry.save()
+			return redirect('entries')
+		
+	context = {
+		'form': form,
+		'topic': topic
+	}
+
+	return render(request, 'create-entry.html', context)
+	
 
 class Entries(LoginRequiredMixin, generic.ListView):
 	model = Entry
