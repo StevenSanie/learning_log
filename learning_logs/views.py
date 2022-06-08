@@ -72,7 +72,7 @@ def new_entry(request, topic_id):
 			entry = form.save(commit=False)
 			entry.topic = topic
 			entry.save()
-			return redirect('entries')
+			return redirect('topic-detail', topic_id)
 		
 	context = {
 		'form': form,
@@ -80,12 +80,6 @@ def new_entry(request, topic_id):
 	}
 
 	return render(request, 'learning_logs/create_entry.html', context)
-	
-
-class Entries(LoginRequiredMixin, generic.ListView):
-	model = Entry
-	template_name = 'learning_logs/entries.html'
-
 
 class DetailEntry(LoginRequiredMixin, generic.DetailView):
 	model = Entry

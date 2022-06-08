@@ -10,6 +10,7 @@ class Topic(models.Model):
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
 	topic_name = models.CharField(max_length=60)
 	date_added = models.DateTimeField(auto_now_add=True)
+	# time_edited = models.DateTimeField(auto_now=True)
 	topic_description = models.TextField(max_length=80, blank=True, null=True)
 	class Meta:
 		ordering = ['-date_added']
