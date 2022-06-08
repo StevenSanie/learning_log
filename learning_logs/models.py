@@ -10,7 +10,7 @@ class Topic(models.Model):
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
 	topic_name = models.CharField(max_length=60)
 	date_added = models.DateTimeField(auto_now_add=True)
-	# time_edited = models.DateTimeField(auto_now=True)
+	time_edited = models.DateTimeField(auto_now=True)
 	topic_description = models.TextField(max_length=80, blank=True, null=True)
 	class Meta:
 		ordering = ['-date_added']
@@ -28,7 +28,7 @@ class Entry(models.Model):
 	entry_title = models.CharField(max_length=100, blank=True)
 	entry_text = models.TextField(max_length=500)
 	date_added = models.DateTimeField(auto_now_add=True)
-
+	edited = models.DateTimeField(auto_now=True, null=True)
 	class Meta:
 		verbose_name_plural = 'entries'
 		ordering = ['-date_added']
