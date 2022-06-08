@@ -8,12 +8,11 @@
 			{% for entry in object_list %}
 			
 				<li>
-					<p class="lead"><a href="{% url 'entry-detail' entry.id %}" class=""> {{entry.entry_title}}</a></p>
+					<p class="lead"><a href="{% url 'entry-detail' entry.id %}" class=""> {{entry.entry_title}} - ({{entry.topic.owner}})</a></p>
 				</li>
 			{% empty %}
 			<p>There are no entries in your account. When you create an entry, it will appear here.</p>
 			{% endfor %}
 		</ul>
-		<a href="{% url 'new-entry' %}" class="btn btn-primary"> <i class="fa fa-plus"></i> New Entry </a>
 	</div>
 {% endblock content %}

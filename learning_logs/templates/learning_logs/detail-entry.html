@@ -4,7 +4,7 @@
 	<div class="container">
 		<h1>{{entry.entry_title}}</h1>
 		<p>
-			<small>Added on <b>{{entry.date_added|date:"M d, y" }}</b>  at  <b>{{entry.date_added|date:"h:iA" }}</b>, {{ entry.date_added|timesince }} ago  |  <a href="{% url 'topic-detail' entry.entry_topic.id%}"><span class="badge badge-dark">{{entry.entry_topic}}</span></a> </small>
+			<small>Added on <b>{{entry.date_added|date:"M d, y" }}</b>  at  <b>{{entry.date_added|date:"h:iA" }}</b>, {{ entry.date_added|timesince }} ago  |  <a href=""><span class="badge badge-dark">{{entry.entry_topic}}</span></a> </small>
 		</p>
 
 		<div class="container">

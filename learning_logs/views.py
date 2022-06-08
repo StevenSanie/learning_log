@@ -60,6 +60,7 @@ class DetailTopic(LoginRequiredMixin, generic.DetailView):
 
 
 # Entry Views
+@login_required
 def new_entry(request, topic_id):
 	topic = Topic.objects.get(id=topic_id)
 
@@ -75,10 +76,10 @@ def new_entry(request, topic_id):
 		
 	context = {
 		'form': form,
-		'topic': topic
+		'topic': topic,
 	}
 
-	return render(request, 'create-entry.html', context)
+	return render(request, 'learning_logs/create_entry.html', context)
 	
 
 class Entries(LoginRequiredMixin, generic.ListView):

@@ -4,7 +4,7 @@
 
 {% block content %}
 	<h1>{{topic}}</h1>
-	<a href="{% url 'new-entry' %}" class="btn btn-sm btn-primary">Add Entry</a>
+	<a href="{% url 'new-entry' topic.id %}" class="btn btn-sm btn-primary">Add Entry</a>
 	<ul>
 		{% for entries in topic.entry_set.all %}
 			<li> <a href="{% url 'entry-detail' entries.id %}"> <p class="lead">{{ entries.entry_title }}</p> </a> </li>
