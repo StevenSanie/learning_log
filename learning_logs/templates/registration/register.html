@@ -1,0 +1,15 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block title %} <title>Learning Log {{topic}}</title> {% endblock %}
+
+{% block content %}
+<h1>Create An Account </h1>
+<p>Already have an acccount? <a href="{% url 'login' %}">Login</a></p>
+
+<form action="" method="post">
+	{% csrf_token%}
+	{{form.as_p}}
+	<input type="submit"  value="Register" class="btn btn-primary">
+</form>
+
+{% endblock content %}

@@ -1,5 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import generic
@@ -16,6 +18,24 @@ def index(request):
 		'entry_count': entry_count
 	}
 	return render(request, 'learning_logs/index.html', context)
+
+def registerUser(request):
+	form = UserCreationForm()
+
+	if request.method == 'POST':
+		form = UserCreationForm(request.POST)
+
+		if form.is_valid():
+			user = form.save(commit=False) 
+			user.username = user.username.lower()
+			user.save()
+			login(request, user)
+			return redirect('index')
+
+	context = {
+		'form': form
+	}
+	return render(request, 'registration/register.html', context)
 
 class TopicsList(LoginRequiredMixin, generic.ListView):
 	model = Topic

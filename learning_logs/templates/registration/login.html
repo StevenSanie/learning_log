@@ -2,14 +2,14 @@
 {% block title %} <title>Login</title> {% endblock title %}
 
 {% block content %} 
-
+	<h1>Login </h1>
 {% if form.errors %}
 	<p>Your username and password didn't match. Please try again.</p>
 {% endif %}
 
 	<div class="container">
 		<div>
-			<h2>Demo Account</h2>
+			<h4>Demo Account</h4>
 			<p><strong>Username:</strong> John <br>
 			<strong>Password:</strong> UChfBPbJ3_fbf.x </p>
 		</div>
@@ -19,12 +19,15 @@
 				{% csrf_token %}
 				{{form.username.label_tag}}
 				{{form.username}}
+
 				<br>
 				{{form.password.label_tag}}
 				{{form.password}}
 				<br>
 				<input type="submit" value="Login" class="btn btn-sm btn-primary">
 			</form>
+
+			<p class="my-4">Want to create your own account? <a href="{% url 'register' %}">Create a new account.</a></p>
 		</div>
 	</div>
 
