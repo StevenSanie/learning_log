@@ -23,8 +23,11 @@
 			Whenever you learn something new about a topic, make an entry summarizing what you've learned.
 		</p>
 
-		<a href="{% url 'register' %}" class="btn btn-primary">Register</a>
-		<a href="{% url 'login' %}" class="btn btn-white"> <i class="fa fa-sign-in"></i> Login Now </a>
+
+		<a href="{% url 'register' %}" class="btn btn-primary"> <i class="fa fa-user-plus"></i> Sign Up </a>
+		<a href="{% url 'login' %}" class="btn btn-white"> <i class="fa fa-sign-in"></i> Sign In </a>
+
+		<p class="my-4"> <i class="fa fa-info-circle"></i> There's a Demo Account you can use to login on the login page</p>
 		{% endif %}
 	</div>
 
