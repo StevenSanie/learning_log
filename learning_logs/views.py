@@ -85,10 +85,10 @@ class EditEntry(LoginRequiredMixin, generic.UpdateView):
 	model = Entry
 	fields = ['entry_title', 'entry_text']
 	template_name = 'learning_logs/edit-entry.html'
-	success_url = reverse_lazy('topics', Entry.entry.topic.id )
+	success_url = reverse_lazy('topics')
 
 
 class DeleteEntry(LoginRequiredMixin, generic.DeleteView):
 	model = Entry
 	template_name = 'learning_logs/delete-entry.html'
-	success_url = reverse_lazy('')
+	success_url = reverse_lazy('topics')
