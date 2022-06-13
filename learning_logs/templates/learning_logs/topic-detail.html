@@ -9,7 +9,13 @@
 	<div class="container my-4">
 		<ul>
 			{% for entries in topic.entry_set.all %}
-				<li> <a href="{% url 'entry-detail' entries.id %}"> <p class="lead">{{ entries.entry_title }}</p> </a> </li>
+				<li>
+					<h2>{{entries.entry_title}}</h2>
+					<p>{{entries.entry_text}}</p>
+
+					<p><small><a class="btn btn-sm btn-dark" href="{% url 'edit-entry' entries.id %}"><span class="fa fa-edit"></span></a> | <a class="btn btn-sm btn-dark" href="{% url 'delete-entry' entries.id %}"><span class="fa fa-trash"></span></a></small></p>
+					<hr>
+				</li>
 			{% endfor %}
 		</ul>
 	</div>

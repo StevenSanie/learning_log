@@ -51,7 +51,7 @@ class DeleteTopic(LoginRequiredMixin, generic.DeleteView):
 class EditTopic(LoginRequiredMixin, generic.UpdateView):
 	model = Topic
 	success_url = reverse_lazy('topics')
-	fields = ['topic_name', 'topic_description']
+	fields = ['topic_name']
 	template_name = 'learning_logs/edit_topic.html'
 
 class DetailTopic(LoginRequiredMixin, generic.DetailView):
@@ -81,15 +81,11 @@ def new_entry(request, topic_id):
 
 	return render(request, 'learning_logs/create_entry.html', context)
 
-class DetailEntry(LoginRequiredMixin, generic.DetailView):
+class EditEntry(LoginRequiredMixin, generic.UpdateView):
 	model = Entry
-	template_name = 'learning_logs/detail-entry.html'
-	
-# class EditEntry(LoginRequiredMixin, generic.UpdateView):
-# 	model = Entry
-# 	fields = ['entry_title', 'entry_text']
-# 	template_name = 'learning_logs/edit-entry.html'
-# 	success_url = reverse_lazy('topics')
+	fields = ['entry_title', 'entry_text']
+	template_name = 'learning_logs/edit-entry.html'
+	success_url = reverse_lazy('topics')
 
 
 class DeleteEntry(LoginRequiredMixin, generic.DeleteView):

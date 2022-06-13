@@ -4,16 +4,12 @@
 {% endblock title %}
 
 {% block content %}
-	<h1>Delete {{topic}}?</h1>
+	<h1>Delete  <u>{{topic}}</u>?</h1>
 	<p>You won't recover this topic and all content in this topic once it is deleted from the database.</p>
-	<ul>
-		{% for entries in topic.entry_set.all %}
-		<li>{{entries}}</li>
-		{% endfor %}
-	</ul>
+
 	<form action="" method="post">
 		{% csrf_token %}
-		<a href="{% url 'topics' %}" class="btn btn-success">No</a>
-		<input type="submit" value="Yes" class="btn btn-danger">
+		<a href="{% url 'topics' %}" class="btn btn-success my-2">Keep {{topic}}</a>
+		<input type="submit" value="Delete {{topic}}" class="btn btn-danger my-2">
 	</form>
 {% endblock content %}

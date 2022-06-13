@@ -9,12 +9,10 @@ class TopicForm(ModelForm):
 		model = Topic
 		fields = [
 			'topic_name',
-			'topic_description',
 		]
 		
 		labels = {
 			'topic_name': 'Name',
-			'topic_description': 'Description'
 		}
 
 class EntryForm(ModelForm):

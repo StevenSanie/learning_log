@@ -10,7 +10,6 @@ urlpatterns = [
 	path('topics/<int:pk>/update/', views.EditTopic.as_view(), name='update-topic'),
 	path('topics/<int:pk>/', views.DetailTopic.as_view(), name='topic-detail'),
 	path('entry/<int:topic_id>', views.new_entry, name='new-entry'),
-	path('entry/<int:pk>/', views.DetailEntry.as_view(), name='entry-detail'),
-	# path('entry/edit/<int:pk>/', views.EditEntry.as_view(), name='edit-entry'),
+	path('entry/edit/<int:pk>/', views.EditEntry.as_view(), name='edit-entry'),
 	path('entry/delete/<int:pk>/', views.DeleteEntry.as_view(), name='delete-entry'),
 ]
