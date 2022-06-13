@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class Topic(models.Model):
 	"""Models to represent a topic"""
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
-	topic_name = models.CharField(max_length=60)
+	topic_name = models.CharField(max_length=60, unique=True)
 	date_added = models.DateTimeField(auto_now_add=True)
 	time_edited = models.DateTimeField(auto_now=True)
 	topic_description = models.TextField(max_length=80, blank=True, null=True)
@@ -34,5 +34,5 @@ class Entry(models.Model):
 		ordering = ['-date_added']
 
 	def __str__(self):
-		return f"{self.entry_title} - {self.entry_topic}"
+		return f"{self.entry_title} - {self.topic}"
 
