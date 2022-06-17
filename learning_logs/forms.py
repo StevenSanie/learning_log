@@ -18,7 +18,7 @@ class TopicForm(ModelForm):
 class EntryForm(ModelForm):
 	class Meta:
 		model = Entry
-		fields = ['entry_title', 'entry_text']
+		fields = ['entry_title', 'entry_text', 'image']
 		labels = {
 			'entry_title': 'Heading',
 			'entry_text': 'Entry'

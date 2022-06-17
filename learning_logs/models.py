@@ -1,3 +1,5 @@
+from distutils.command.upload import upload
+from email.policy import default
 from tabnanny import verbose
 from django.db import models
 from django.forms import NullBooleanField
@@ -29,6 +31,7 @@ class Entry(models.Model):
 	entry_text = models.TextField(max_length=500)
 	date_added = models.DateTimeField(auto_now_add=True)
 	edited = models.DateTimeField(auto_now=True, null=True)
+	image = models.ImageField(null=True, blank=True, upload_to='images')
 	class Meta:
 		verbose_name_plural = 'entries'
 		ordering = ['-date_added']
@@ -36,4 +39,3 @@ class Entry(models.Model):
 
 	def __str__(self):
 		return f"{self.entry_title} - {self.topic}"
-

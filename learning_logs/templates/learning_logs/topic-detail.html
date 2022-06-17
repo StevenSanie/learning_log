@@ -12,6 +12,9 @@
 				<li class="entry">
 					<h2>{{entries.entry_title|title}}</h2>
 					<p>{{entries.entry_text}}</p>
+					{% if entries.image %}
+					<img src="{{entries.image.url}}" class="img img-fluid" alt="">
+					{% endif %}
 					<p><small>{{entries.date_added|date:'d M y - h:i A'}}</small></p>
 
 					<p><small><a class="btn btn-sm btn-dark" href="{% url 'edit-entry' entries.id %}"><span class="fa fa-edit"></span> Edit</a> | <a class="btn btn-sm btn-dark" href="{% url 'delete-entry' entries.id %}"><span class="fa fa-trash"></span> Delete</a></small></p>

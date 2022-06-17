@@ -1,3 +1,4 @@
+from importlib.metadata import files
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth import login
@@ -87,7 +88,7 @@ def new_entry(request, topic_id):
 	if request.method != 'POST':
 		form = EntryForm()
 	else:
-		form = EntryForm(data=request.POST)
+		form = EntryForm(data=request.POST, files=request.FILES)
 		if form.is_valid():
 			entry = form.save(commit=False)
 			entry.topic = topic
@@ -103,7 +104,7 @@ def new_entry(request, topic_id):
 
 class EditEntry(LoginRequiredMixin, generic.UpdateView):
 	model = Entry
-	fields = ['entry_title', 'entry_text']
+	fields = ['entry_title', 'entry_text', 'image']
 	template_name = 'learning_logs/edit-entry.html'
 	success_url = reverse_lazy('topics')
 
